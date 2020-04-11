@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="col-xs-12">
+    <h1>{{ pageTitle }}</h1>
+    <div class="col-xs-6">
+      <form
+        #userForm="ngForm"
+        (ngSubmit)="onSubmit()"
+        *ngIf="!submitted; else responseBlock"
+        novalidate
+      >
+        <!----  
+        <pre> {{ userForm.value | json }} </pre>
+        <pre> {{ personModel | json }} </pre>
+      -->
+        <div class="form-group">
+          <label for="">Name</label>
+          <input
+            type="text"
+            required
+            #name="ngModel"
+            class="form-control"
+            name="name"
+            [(ngModel)]="personModel.name"
+          />
+          <small [ngClass]="{ hidden: name.valid || name.untouched }"
+            >Name is required</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="">CUI</label>
+          <input
+            type="number"
+            required
+            #cui="ngModel"
+            pattern="^\d{13}$"
+            class="form-control"
+            name="cui"
+            [(ngModel)]="personModel.cui"
+          />
+          <small [ngClass]="{ hidden: cui.valid || cui.untouched }"
+            >CUI is invalid</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="">Balance</label>
+          <input
+            type="number"
+            required
+            #balance
+            class="form-control"
+            name="balance"
+            [(ngModel)]="personModel.balance"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="">Image URL</label>
+          <input
+            type="text"
+            required
+            #image="ngModel"
+            class="form-control"
+            name="image"
+            [(ngModel)]="personModel.image"
+          />
+          <small [ngClass]="{ hidden: image.valid || image.untouched }"
+            >Image is required</small
+          >
+        </div>
+
+        <button
+          [disabled]="userForm.form.invalid"
+          class="btn btn-primary"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+
+      <ng-template #responseBlock></ng-template>
+      <h2>{{ successMsg }}</h2>
+      <h2>{{ errorMsg }}</h2>
+
+    </div>
+  </div>
+</div>

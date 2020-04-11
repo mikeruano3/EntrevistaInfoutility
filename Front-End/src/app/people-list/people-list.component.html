@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+  <div class="container">
+    <h1>People List</h1>
+    <ul>
+      <li
+        (click)="onSelect(person)"
+        [class.clicked]="isSelected(person)"
+        *ngFor="let person of people"
+      >
+        <button>
+          <span class="badge">{{ person.id }}</span>
+          {{ person.name }}
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
